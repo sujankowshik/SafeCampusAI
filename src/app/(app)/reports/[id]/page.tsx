@@ -21,7 +21,8 @@ export default async function ReportDetailsPage({ params }: ReportDetailsPagePro
   const incident = await getIncidentById(params.id);
   const userId = auth.currentUser?.uid;
 
-  if (!incident || incident.createdByUserId !== userId) {
+  if (!incident || (incident.createdByUserId !== userId && !incident.isAnonymous)) {
+    // Also check if the user is an admin in a real scenario
     notFound();
   }
 

@@ -6,16 +6,16 @@ import { useEffect } from 'react';
 import { Skeleton } from '@/components/ui/skeleton';
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
-  const { user, isAdmin, loading } = useAuth();
+  const { user, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!loading && (!user || isAdmin)) {
+    if (!loading && !user) {
       router.push('/login');
     }
-  }, [user, isAdmin, loading, router]);
+  }, [user, loading, router]);
 
-  if (loading || !user || isAdmin) {
+  if (loading || !user) {
     return (
         <div className="container py-8 space-y-4">
             <Skeleton className="h-12 w-1/4" />

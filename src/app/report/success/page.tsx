@@ -25,14 +25,17 @@ export default function ReportSuccessPage() {
           <p>Your report has been received and will be reviewed shortly.</p>
           {!isAnonymous && reportId && (
             <div className="border bg-muted/50 p-4 rounded-md">
-              <p className="text-sm text-muted-foreground">Your Tracking ID is:</p>
-              <p className="font-mono text-lg font-semibold">{reportId}</p>
+              <p className="text-sm text-muted-foreground">You can track the status of this report on your "My Reports" page.</p>
             </div>
           )}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            {!isAnonymous && (
+            {!isAnonymous ? (
               <Button asChild>
                 <Link href="/my-reports">View My Reports</Link>
+              </Button>
+            ) : (
+               <Button asChild>
+                <Link href="/report">Submit Another Report</Link>
               </Button>
             )}
             <Button asChild variant="outline">
